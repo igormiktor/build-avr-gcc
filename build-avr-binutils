@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# http://www.nongnu.org/avr-libc/user-manual/install_tools.html
+
+# For optimum compile time this should generally be set to the number of CPU cores your machine has
+JOBCOUNT=4
+
+# Output locations for built toolchains
+PREFIX=/usr/local/avr
+
+# Stop on errors
+set -e
+
+NAME_BINUTILS="binutils-2.29"
+
+NAME_BINUTILS_SIZE_PATCH="avr-binutils-size.patch"
+
+TIME_START=$(date +%s)
+
+makeDir()
+{
+	rm -rf "$1/"
+	mkdir -p "$1"
+}
+
+
+echo "Downloading sources..."
+
+if [ ! -f $NAME_BINUTILS.tar.xz ]; then
+    wget https://ftp.mirrorservice.org/sites/ftp.gnu.org/gnu/binutils/$NAME_BINUTILS.tar.xz
+fi
+
+
+# Make AVR-Binutils
+NAME_BINUTILS_BLD=${NAME_BINUTILS}_bld
+echo "Making Binutils in $NAME_BINUTILS_BLD..."
+echo "Extracting..."
+rm -rf $NAME_BINUTILS/
+tar xf $NAME_BINUTILS.tar.xz
+
+# Patch the size function
+cd $NAME_BINUTILS/binutils
+patch -p 1 < ../../$NAME_BINUTILS_SIZE_PATCH
+cd ../..
+
+makeDir $NAME_BINUTILS_BLD
+cd $NAME_BINUTILS_BLD
+../$NAME_BINUTILS/configure --prefix=$PREFIX --target=avr --disable-nls
+make -j $JOBCOUNT
+sudo make install-strip
+cd ..
+
+
+TIME_END=$(date +%s)
+TIME_RUN=$(($TIME_END - $TIME_START))
+
+echo ""
+echo "Done in $TIME_RUN seconds"
+
+exit 0

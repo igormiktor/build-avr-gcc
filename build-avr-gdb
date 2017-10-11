@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# http://www.nongnu.org/avr-libc/user-manual/install_tools.html
+
+# For optimum compile time this should generally be set to the number of CPU cores your machine has
+JOBCOUNT=4
+
+# Output locations for built toolchains
+PREFIX=/usr/local/avr
+
+
+# Stop on errors
+set -e
+
+NAME_GDB="gdb-8.0.1"
+
+TIME_START=$(date +%s)
+
+makeDir()
+{
+	rm -rf "$1/"
+	mkdir -p "$1"
+}
+
+
+echo "Downloading sources..."
+
+if [ ! -f $NAME_GDB.tar.xz ]; then
+    wget https://ftp.mirrorservice.org/sites/sourceware.org/pub/gdb/releases/$NAME_GDB.tar.xz
+fi
+
+
+# Make AVR-libc
+NAME_GDB_BLD=${NAME_GDB}_bld
+echo "Making AVR-GDB in $NAME_GDB_BLD..."
+echo "Extracting..."
+rm -rf $NAME_GDB/
+tar xf $NAME_GDB.tar.xz
+
+makeDir $NAME_GDB_BLD
+cd $NAME_GDB_BLD
+../$NAME_GDB/configure --prefix=$PREFIX --target=avr
+make -j $JOBCOUNT
+sudo make install
+cd ..
+
+TIME_END=$(date +%s)
+TIME_RUN=$(($TIME_END - $TIME_START))
+
+echo ""
+echo "Done in $TIME_RUN seconds"
+
+exit 0

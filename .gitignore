@@ -1,3 +1,13 @@
+# Ignore any backup files.
+*~
+*.bak
+
+# Ignore kate swap files
+*.kate-swp
+
+# Ignore any build directories
+_bld
+
 # Prerequisites
 *.d
 

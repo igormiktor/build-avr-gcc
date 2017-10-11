@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# http://www.nongnu.org/avr-libc/user-manual/install_tools.html
+
+# For optimum compile time this should generally be set to the number of CPU cores your machine has
+JOBCOUNT=4
+
+# Output locations for built toolchains
+PREFIX=/usr/local/avr
+
+
+# Stop on errors
+set -e
+
+NAME_LIBC="avr-libc-2.0.0"
+
+TIME_START=$(date +%s)
+
+makeDir()
+{
+	rm -rf "$1/"
+	mkdir -p "$1"
+}
+
+
+echo "Downloading sources..."
+
+if [ ! -f $NAME_LIBC.tar.bz2 ]; then
+    wget https://ftp.mirrorservice.org/sites/download.savannah.gnu.org/releases/avr-libc/$NAME_LIBC.tar.bz2
+fi
+
+
+# Make AVR-libc
+NAME_LIBC_BLD=${NAME_LIBC}_bld
+echo "Making AVR-LIBC in $NAME_LIBC_BLD..."
+echo "Extracting..."
+rm -rf $NAME_LIBC/
+tar xjf $NAME_LIBC.tar.bz2
+
+makeDir $NAME_LIBC_BLD
+cd $NAME_LIBC_BLD
+../$NAME_LIBC/configure --prefix=$PREFIX --build=$(../$NAME_LIBC/config.guess) --host=avr
+make -j $JOBCOUNT
+sudo make install-strip
+cd ..
+
+TIME_END=$(date +%s)
+TIME_RUN=$(($TIME_END - $TIME_START))
+
+echo ""
+echo "Done in $TIME_RUN seconds"
+
+exit 0
