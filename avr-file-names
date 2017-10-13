@@ -1,0 +1,17 @@
+# Names of the files (with version) that will be used to build the avr-gcc toolchain
+
+# binuitls name and version
+NAME_BINUTILS="binutils-2.29"
+
+# gcc name and version
+NAME_GCC="gcc-7.2.0"
+
+# avr-libc name and version
+NAME_LIBC="avr-libc-2.0.0"
+
+# avrdude name and version
+NAME_AVRDUDE="avrdude-6.3"
+
+# gdb name and version
+NAME_GDB="gdb-8.0.1"
+

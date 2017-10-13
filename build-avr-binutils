@@ -11,7 +11,7 @@ PREFIX=/usr/local/avr
 # Stop on errors
 set -e
 
-NAME_BINUTILS="binutils-2.29"
+source avr-file-names
 
 NAME_BINUTILS_SIZE_PATCH="avr-binutils-size.patch"
 

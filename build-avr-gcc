@@ -7,12 +7,11 @@ JOBCOUNT=4
 
 # Output locations for built toolchains
 PREFIX=/usr/local/avr
-export PREFIX
 
 # Stop on errors
 set -e
 
-NAME_GCC="gcc-7.2.0"
+source avr-file-names
 
 TIME_START=$(date +%s)
 

@@ -8,11 +8,10 @@ JOBCOUNT=4
 # Output locations for built toolchains
 PREFIX=/usr/local/avr
 
-
 # Stop on errors
 set -e
 
-NAME_AVRDUDE="avrdude-6.3"
+source avr-file-names
 
 TIME_START=$(date +%s)
 
