@@ -1,5 +1,8 @@
 # Names of the files (with version) that will be used to build the avr-gcc toolchain
 
+# Install location
+PREFIX=/usr/local/avr
+
 # binuitls name and version
 NAME_BINUTILS="binutils-2.29"
 

@@ -5,9 +5,6 @@
 # For optimum compile time this should generally be set to the number of CPU cores your machine has
 JOBCOUNT=4
 
-# Output locations for built toolchains
-PREFIX=/usr/local/avr
-
 # Stop on errors
 set -e
 
