@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# http://www.nongnu.org/avr-libc/user-manual/install_tools.html
+# http://reprap.org/wiki/SimulAVR
+# (because I can't get the official SimulAVR at savannah to build a working executable)
 
 # Stop on errors
 set -e
