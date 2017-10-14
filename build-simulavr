@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# http://www.nongnu.org/avr-libc/user-manual/install_tools.html
+
+# Stop on errors
+set -e
+
+source avr-file-names
+
+TIME_START=$(date +%s)
+
+echo "Downloading sources..."
+
+rm -rf $NAME_SIMULAVR
+git clone https://github.com/Traumflug/simulavr.git $NAME_SIMULAVR
+
+# Make simulavr
+echo "Making simulavr in $NAME_SIMULAVR..."
+cd $NAME_SIMULAVR/
+git checkout traumflug
+
+./bootstrap
+./configure --enable-tcl --prefix=$PREFIX
+make
+sudo make install-strip
+
+cd ..
+
+TIME_END=$(date +%s)
+TIME_RUN=$(($TIME_END - $TIME_START))
+
+echo ""
+echo "Done in $TIME_RUN seconds"
+
+exit 0
