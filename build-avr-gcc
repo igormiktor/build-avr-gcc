@@ -37,9 +37,10 @@ tar xf $NAME_GCC.tar.xz
 cd $NAME_GCC
 sed -i 's/ftp/https/g' ./contrib/download_prerequisites
 ./contrib/download_prerequisites
+cd ..
 
 makeDir $NAME_GCC_BLD
-cd ../$NAME_GCC_BLD
+cd $NAME_GCC_BLD
 ../$NAME_GCC/configure --prefix=$PREFIX --target=avr --enable-languages=c,c++ --disable-nls --disable-libssp --disable-libada \
 --with-dwarf2 --disable-shared --enable-static
 make -j $JOBCOUNT
