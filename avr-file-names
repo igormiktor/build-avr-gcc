@@ -4,10 +4,10 @@
 PREFIX=/usr/local/avr
 
 # binuitls name and version
-NAME_BINUTILS="binutils-2.29"
+NAME_BINUTILS="binutils-2.31.1"
 
 # gcc name and version
-NAME_GCC="gcc-7.2.0"
+NAME_GCC="gcc-8.2.0"
 
 # avr-libc name and version
 NAME_LIBC="avr-libc-2.0.0"
@@ -16,7 +16,7 @@ NAME_LIBC="avr-libc-2.0.0"
 NAME_AVRDUDE="avrdude-6.3"
 
 # gdb name and version
-NAME_GDB="gdb-8.0.1"
+NAME_GDB="gdb-8.1.1"
 
 # simulavr name and version
 NAME_SIMULAVR="simulavr"
