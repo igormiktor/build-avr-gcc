@@ -37,7 +37,7 @@ makeDir $NAME_LIBC_BLD
 cd $NAME_LIBC_BLD
 ../$NAME_LIBC/configure --prefix=$PREFIX --build=$(../$NAME_LIBC/config.guess) --host=avr
 make -j $JOBCOUNT
-sudo make install-strip
+sudo  env "PATH=$PATH" make install-strip
 cd ..
 
 TIME_END=$(date +%s)
