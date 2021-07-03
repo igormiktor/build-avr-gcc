@@ -2,9 +2,6 @@
 
 # http://www.nongnu.org/avr-libc/user-manual/install_tools.html
 
-# For optimum compile time this should generally be set to the number of CPU cores your machine has
-JOBCOUNT=4
-
 # Stop on errors
 set -e
 

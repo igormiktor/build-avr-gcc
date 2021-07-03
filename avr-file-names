@@ -1,5 +1,8 @@
 # Names of the files (with version) that will be used to build the avr-gcc toolchain
 
+# Number of CPUs to use for parallel builds
+JOBCOUNT=8
+
 # Install location
 PREFIX=/usr/local/avr
 
