@@ -40,3 +40,16 @@ _bld
 *.exe
 *.out
 *.app
+
+# Junk files
+*.tar
+*.gz
+*.xz
+*.bz2
+*_bld
+avrdude*
+avr-libc*
+binutils*
+gcc*
+gdb*
+simulavr*
