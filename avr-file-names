@@ -10,7 +10,7 @@ PREFIX=/usr/local/avr
 NAME_BINUTILS="binutils-2.37"
 
 # gcc name and version
-NAME_GCC="gcc-7.4.0"
+NAME_GCC="gcc-7.5.0"
 
 # avr-libc name and version
 NAME_LIBC="avr-libc-2.0.0"
