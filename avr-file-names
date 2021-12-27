@@ -7,7 +7,7 @@ JOBCOUNT=8
 PREFIX=/usr/local/avr
 
 # binuitls name and version
-NAME_BINUTILS="binutils-2.32"
+NAME_BINUTILS="binutils-2.37"
 
 # gcc name and version
 NAME_GCC="gcc-7.4.0"
