@@ -10,3 +10,7 @@ Currently it is a set of individual bash scripts to build:
 
 
 Your mileage may vary...
+
+**Note:** All gcc versions after 7.5.0 generate bad code with a specific piece
+of complex AVR code targeting the ATmega2560 that is important to me.  
+I haven't invested the time to chase down the problem...
