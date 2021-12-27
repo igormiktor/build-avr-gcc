@@ -7,7 +7,28 @@ set -e
 
 source avr-file-names
 
-NAME_BINUTILS_SIZE_PATCH="avr-binutils-size.patch"
+# Figure out which version of the patch to use
+OLD_PATCH_CUTOFF="2.32"
+OLD_PATCH_CUTOFF_MAJ=${OLD_PATCH_CUTOFF%%.*}
+OLD_PATCH_CUTOFF_MIN=${OLD_PATCH_CUTOFF#*.}
+
+BINUTILS_VER=${NAME_BINUTILS#binutils-}
+BINUTILS_VER_MAJ=${BINUTILS_VER%%.*}
+BINUTILS_VER_MIN_TMP=${BINUTILS_VER#*.}
+BINUTILS_VER_MIN=${BINUTILS_VER_MIN_TMP%.*}
+
+if [ $BINUTILS_VER_MAJ -eq "1" ]; then
+  echo "ERROR:  Binutils version 1.xx is too old -- use at least version 2.xx"
+  exit 1;
+fi
+
+if [ $BINUTILS_VER_MAJ -gt $OLD_PATCH_CUTOFF_MAJ ] || \
+( [ $BINUTILS_VER_MAJ -eq $OLD_PATCH_CUTOFF_MAJ ] && [ $BINUTILS_VER_MIN -gt $OLD_PATCH_CUTOFF_MIN ] ) ; then
+  NAME_BINUTILS_SIZE_PATCH="avr-binutils-size-2.33.patch";
+else
+  NAME_BINUTILS_SIZE_PATCH="avr-binutils-size-2.32.patch";
+fi
+
 
 TIME_START=$(date +%s)
 
